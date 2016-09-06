@@ -17,7 +17,7 @@ int main() {
   a.boardSize(numRows,numCols,bsizeIn);
 
 //make board using size selected
-  a.makeBoard(a,numRows,numCols);
+  a.makeBoard(*a,numRows&,numCols&);
   a.printBoard(numRows,numCols,a);
 //human move
   a.placeDie(numRows,numCols,a);

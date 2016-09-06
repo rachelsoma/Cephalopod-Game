@@ -16,7 +16,7 @@ class Game {
 public:
   void play();
   void boardSize(int,int,int);
-  void makeBoard(int,int,int);
+  void makeBoard(int*,int,int);
   void humanMove();
   void placeDie(int,int,int);
   void printBoard(int,int,int);
@@ -55,7 +55,7 @@ void Game::boardSize(int,int,int) {
 
 };
 
-void Game::makeBoard(int,int,int) {
+void Game::makeBoard(int*,int,int) {
   int index;
   cout << "Making board " << numRows << "x" << numCols << endl;
 
@@ -71,10 +71,13 @@ void Game::makeBoard(int,int,int) {
 
 
 void Game::printBoard(int,int,int) {
-/*  for (int row = 0; row <= numRows; row++) {
+
+  int *a;
+
+  for (int row = 0; row <= numRows; row++) {
     for (int col = 0; col <= numCols; col++)
-    { a[row][col] = 0; }
-  }*/
+    { int *a[row][col]; }
+  }
 
   for (int col = 0; col < numCols; col++) {
     cout << setw(5) << col + 1;
@@ -85,8 +88,7 @@ void Game::printBoard(int,int,int) {
     cout << row + 1 << " ";
 
   for (int col = 0; col < numCols; col++) {
-    cout << setw(3) << a[numRows][numCols];
-
+    cout << setw(3) << *a;
     if (col != 3) {
       cout << " |";
     } else
@@ -113,6 +115,7 @@ void Game::printBoard(int,int,int) {
 
 //This isn't going to work until I figure out pointers
 void Game::placeDie(int,int,int) {
+  int *a;
   int row;
   int col;
   cout << "Where would you like to place your die?";
@@ -129,8 +132,8 @@ void Game::placeDie(int,int,int) {
   col = col - 1;
 
 // check seat
-  if (a[row][col] != 0) { //checks if seat is taken or not **make own function**
-    a[row][col] = 1;
+  if (*a != 0) { //checks if seat is taken or not **make own function**
+    *a = 1;
   } else {
     cout << "That move is invalid" << endl;
   }
