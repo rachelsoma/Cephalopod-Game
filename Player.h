@@ -8,6 +8,7 @@ class Player {
 //Human Player inherets from player
 class HumanPlayer: public Player{
   public:
+
 int numRows;
 int numCols;
   void humanMove();

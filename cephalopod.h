@@ -23,17 +23,17 @@ private:
   /* using _ prefix to easily ideantify private */
   int _numRows;
   int _numCols;
+
   //int board[][];
-  typedef int* BoardPtr;
+  typedef int *BoardPtr;
+  int BoardPtr *brd;
 };
 
 class Board {
 };
 
-
 void Game::boardSize() {
   int bsize;
-  int _numRows, _numCols;
 //add verification while loop later
   cout << "Select board size: \n 1. 3x3 \n 2. 3x5 \n 3. 5x5 \n";
   cin >> bsize;
@@ -49,24 +49,20 @@ void Game::boardSize() {
       _numRows = 5;
       _numCols = 5;
     }
-
   cout << _numRows << "x" << _numCols << endl;
-
 };
 
 void Game::makeBoard() {
 
   cout << "Making board " << _numRows << "x" << _numCols << endl;
-
-  BoardPtr *brd = new BoardPtr[_numRows];
-
-
-  //char board[numRows][numCols];
-  for (int i = 0; i < _numRows; i++) {
-     brd[i][0] = i +1;
-    brd[i]=new int[_numCols];
+  *brd = new BoardPtr[_numCols];
+  {
+    for( int i = 0; i < _numCols; ++i ) {
+      // Second dimension
+      brd[i] = new int[_numRows];
+    }
   }
-}
+};
 
 
 void Game::printBoard() {
