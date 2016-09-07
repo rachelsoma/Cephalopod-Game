@@ -15,10 +15,10 @@ using namespace std;
 class Game {
 public:
   void play();
-  void boardSize(int,int,int);
-  void makeBoard(int,int,int*);
+  void boardSize();
+  void makeBoard();
 
-  void printBoard(int,int,int*);
+  void printBoard();
 
 private:
   int bsize;
@@ -32,8 +32,8 @@ private:
 class Board {
 };
 
-
-void Game::boardSize(int,int,int) {
+/*
+void Game::boardSize() {
   int bsizeIn;
 //add verification while loop later
   cout << "Select board size: \n 1. 3x3 \n 2. 3x5 \n 3. 5x5 \n";
@@ -56,24 +56,24 @@ void Game::boardSize(int,int,int) {
 
   cout << numRows << "x" << numCols << endl;
 
-};
+};*/
 
-void Game::makeBoard(int,int,int*) {
-  int index;
+void Game::makeBoard() {
+
   cout << "Making board " << numRows << "x" << numCols << endl;
 
-  BoardPtr *a = new BoardPtr[numRows];
+  BoardPtr *brd = new BoardPtr[numRows];
 
 
   //char board[numRows][numCols];
   for (int i = 0; i < numRows; i++) {
-    // arr[i][0] = i +1;
-    a[i]=new int[numCols];
+     brd[i][0] = i +1;
+    brd[i]=new int[numCols];
   }
 }
 
 
-void Game::printBoard(int,int,int*) {
+void Game::printBoard() {
 
   int *a;
 

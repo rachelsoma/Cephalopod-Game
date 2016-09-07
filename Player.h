@@ -4,15 +4,14 @@
 
 class Player {
   public:
-    int numRows;
-    int numCols;
 };
 //Human Player inherets from player
 class HumanPlayer: public Player{
   public:
-
+int numRows;
+int numCols;
   void humanMove();
-  void placeDie(int,int,int);
+  void placeDie();
 };
 //AiPlayer inherets from Player
 class AiPlayer: public Player {
@@ -25,7 +24,7 @@ public:
 
 
 //This isn't going to work until I figure out pointers
-void HumanPlayer::placeDie(int,int,int) {
+void HumanPlayer::placeDie() {
   int *a;
   int row;
   int col;
