@@ -17,7 +17,8 @@ int main() {
   //this is the pointer int, when functions expect an int I’ve passed
   //it’s value with “*b”, where they expect a pointer I’ve passed “b”.
 
-  int numRows, numCols, bsize;
+  int bsize;
+/*
 //choose size of board from a list
 
 //add verification while loop later
@@ -27,8 +28,7 @@ int main() {
   if (bsize==1) {
     numRows = 3;
     numCols = 3;
-  }
-  else if (bsize==2) {
+  }  else if (bsize==2) {
     numRows = 3;
     numCols = 5;
   } else {
@@ -36,10 +36,10 @@ int main() {
     numCols = 5;
   }
   cout << numRows << "x" << numCols << endl;
-
-
+*/
+  a.boardSize(bsize);
 //make board using size selected
-  a.makeBoard(numRows,numCols);
+  a.makeBoard();
   //a.printBoard();
 //human move
 // HumanPlayer.placeDie(numRows,numCols,*b);

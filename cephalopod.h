@@ -16,53 +16,50 @@ class Game {
 public:
   int numRows;
   int numCols;
-
+  int bsize;
   void play();
-  void boardSize();
-  void makeBoard(int,int);
+  void boardSize(int);
+  void makeBoard();
   void printBoard();
 
 private:
-  int bsize;
-  //int numRows;
-  //int numCols;
+  /* using _ prefix to easily ideantify private */
+  int _numRows;
+  int _numCols;
   //int board[][];
   typedef int* BoardPtr;
-
 };
 
 class Board {
 };
 
-/*
-void Game::boardSize() {
-  int bsizeIn;
+
+void Game::boardSize(int bsize) {
+  //int bsize;
 //add verification while loop later
   cout << "Select board size: \n 1. 3x3 \n 2. 3x5 \n 3. 5x5 \n";
-  cin >> bsizeIn;
-
-  bsize = bsizeIn;
+  cin >> bsize;
 
   if (bsize ==1) {
-    int numRows = 3;
-    int numCols = 3;
+    int _numRows = 3;
+    int _numCols = 3;
   } else
     if (bsize ==2) {
-      int numRows = 3;
-      int numCols = 5;
+      int _numRows = 3;
+      int _numCols = 5;
     } else {
-      int numRows = 5;
-      int numCols = 5;
+      int _numRows = 5;
+      int _numCols = 5;
     }
 
 
-  cout << numRows << "x" << numCols << endl;
+  cout << _numRows << "x" << _numCols << endl;
 
-};*/
+};
 
-void Game::makeBoard(int numRows, int numCols) {
+void Game::makeBoard() {
 
-  cout << "Making board " << numRows << "x" << numCols << endl;
+  cout << "Making board " << _numRows << "x" << _numCols << endl;
 
   BoardPtr *brd = new BoardPtr[numRows];
 
