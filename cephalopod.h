@@ -17,8 +17,7 @@ public:
   void play();
   void boardSize(int,int,int);
   void makeBoard(int,int,int*);
-  void humanMove();
-  void placeDie(int,int,int);
+
   void printBoard(int,int,int*);
 
 private:
@@ -33,20 +32,10 @@ private:
 class Board {
 };
 
-class Player{
-};
-//AiPlayer inherets from Player
-class AiPlayer: public Player{
-  public:
-};
-//Random player inherets from Player
-class RandomPlayer: public Player{
-  public:
-};
 
 void Game::boardSize(int,int,int) {
   int bsizeIn;
- //add verification while loop later
+//add verification while loop later
   cout << "Select board size: \n 1. 3x3 \n 2. 3x5 \n 3. 5x5 \n";
   cin >> bsizeIn;
 
@@ -80,8 +69,8 @@ void Game::makeBoard(int,int,int*) {
   for (int i = 0; i < numRows; i++) {
     // arr[i][0] = i +1;
     a[i]=new int[numCols];
-    }
   }
+}
 
 
 void Game::printBoard(int,int,int*) {
@@ -101,56 +90,29 @@ void Game::printBoard(int,int,int*) {
   for (int row = 0; row < numRows; row++) {
     cout << row + 1 << " ";
 
-  for (int col = 0; col < numCols; col++) {
-    cout << setw(3) << *a;
-    if (col != 3) {
-      cout << " |";
-    } else
-      if (col == numCols * 3) {
-        cout << endl;
+    for (int col = 0; col < numCols; col++) {
+      cout << setw(3) << *a;
+      if (col != 3) {
+        cout << " |";
+      } else
+        if (col == numCols * 3) {
+          cout << endl;
+        }
+    }
+
+    cout << endl;
+
+    if (numCols > 4) {
+      cout << "  ____|____|____|____|____" << endl
+           <<  "      |    |    |    |    " << endl;
+    } else {
+      if (numCols != 2) {
+        cout << "  ____|____|____" << endl
+             <<      "      |    |    " << endl;
       }
-  }
-
-  cout << endl;
-
-  if (numCols > 4) {
-    cout << "  ____|____|____|____|____" << endl
-         <<  "      |    |    |    |    " << endl;
-  } else {
-    if (numCols != 2) {
-      cout << "  ____|____|____" << endl
-           <<      "      |    |    " << endl;
     }
   }
-  }
   cout << endl;
-
-};
-
-//This isn't going to work until I figure out pointers
-void Game::placeDie(int,int,int) {
-  int *a;
-  int row;
-  int col;
-  cout << "Where would you like to place your die?";
-  do {
-    cout << "Choose a row: ";
-    cin >> row;
-  } while (row < 1 || row > numRows);
-  row = row - 1;
-
-  do {
-    cout << "Choose a col: ";
-    cin >> col;
-  } while (col < 1 || col > numCols +1);
-  col = col - 1;
-
-// check seat
-  if (*a != 0) { //checks if seat is taken or not **make own function**
-    *a = 1;
-  } else {
-    cout << "That move is invalid" << endl;
-  }
 };
 
 
