@@ -14,11 +14,8 @@ using namespace std;
 
 class Game {
 public:
-  int numRows;
-  int numCols;
-  int bsize;
   void play();
-  void boardSize(int);
+  void boardSize();
   void makeBoard();
   void printBoard();
 
@@ -34,24 +31,24 @@ class Board {
 };
 
 
-void Game::boardSize(int bsize) {
-  //int bsize;
+void Game::boardSize() {
+  int bsize;
+  int _numRows, _numCols;
 //add verification while loop later
   cout << "Select board size: \n 1. 3x3 \n 2. 3x5 \n 3. 5x5 \n";
   cin >> bsize;
 
   if (bsize ==1) {
-    int _numRows = 3;
-    int _numCols = 3;
+    _numRows = 3;
+    _numCols = 3;
   } else
     if (bsize ==2) {
-      int _numRows = 3;
-      int _numCols = 5;
+      _numRows = 3;
+      _numCols = 5;
     } else {
-      int _numRows = 5;
-      int _numCols = 5;
+      _numRows = 5;
+      _numCols = 5;
     }
-
 
   cout << _numRows << "x" << _numCols << endl;
 
@@ -61,13 +58,13 @@ void Game::makeBoard() {
 
   cout << "Making board " << _numRows << "x" << _numCols << endl;
 
-  BoardPtr *brd = new BoardPtr[numRows];
+  BoardPtr *brd = new BoardPtr[_numRows];
 
 
   //char board[numRows][numCols];
-  for (int i = 0; i < numRows; i++) {
+  for (int i = 0; i < _numRows; i++) {
      brd[i][0] = i +1;
-    brd[i]=new int[numCols];
+    brd[i]=new int[_numCols];
   }
 }
 
@@ -76,36 +73,36 @@ void Game::printBoard() {
 
   int *a;
 
-  for (int row = 0; row <= numRows; row++) {
-    for (int col = 0; col <= numCols; col++)
+  for (int row = 0; row <= _numRows; row++) {
+    for (int col = 0; col <= _numCols; col++)
     { int *a[row][col]; }
   }
 
-  for (int col = 0; col < numCols; col++) {
+  for (int col = 0; col < _numCols; col++) {
     cout << setw(5) << col + 1;
   }
   cout << endl ;
 
-  for (int row = 0; row < numRows; row++) {
+  for (int row = 0; row < _numRows; row++) {
     cout << row + 1 << " ";
 
-    for (int col = 0; col < numCols; col++) {
+    for (int col = 0; col < _numCols; col++) {
       cout << setw(3) << *a;
       if (col != 3) {
         cout << " |";
       } else
-        if (col == numCols * 3) {
+        if (col == _numCols * 3) {
           cout << endl;
         }
     }
 
     cout << endl;
 
-    if (numCols > 4) {
+    if (_numCols > 4) {
       cout << "  ____|____|____|____|____" << endl
            <<  "      |    |    |    |    " << endl;
     } else {
-      if (numCols != 2) {
+      if (_numCols != 2) {
         cout << "  ____|____|____" << endl
              <<      "      |    |    " << endl;
       }

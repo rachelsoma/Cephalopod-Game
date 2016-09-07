@@ -17,27 +17,7 @@ int main() {
   //this is the pointer int, when functions expect an int I’ve passed
   //it’s value with “*b”, where they expect a pointer I’ve passed “b”.
 
-  int bsize;
-/*
-//choose size of board from a list
-
-//add verification while loop later
-  cout << "Select board size: \n 1. 3x3 \n 2. 3x5 \n 3. 5x5 \n";
-  cin >> bsize;
-
-  if (bsize==1) {
-    numRows = 3;
-    numCols = 3;
-  }  else if (bsize==2) {
-    numRows = 3;
-    numCols = 5;
-  } else {
-    numRows = 5;
-    numCols = 5;
-  }
-  cout << numRows << "x" << numCols << endl;
-*/
-  a.boardSize(bsize);
+  a.boardSize();
 //make board using size selected
   a.makeBoard();
   //a.printBoard();
