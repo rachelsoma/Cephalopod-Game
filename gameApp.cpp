@@ -20,7 +20,7 @@ int main() {
   a.boardSize();
 //make board using size selected
   a.makeBoard();
-  //a.printBoard();
+  a.printBoard();
 //human move
 // HumanPlayer.placeDie(numRows,numCols,*b);
   //a.printBoard(numRows,numCols,b);
