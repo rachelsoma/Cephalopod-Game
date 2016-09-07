@@ -26,7 +26,7 @@ private:
 
   //int board[][];
   typedef int *BoardPtr;
-  int BoardPtr *brd;
+  BoardPtr *brd;
 };
 
 class Board {
@@ -55,7 +55,7 @@ void Game::boardSize() {
 void Game::makeBoard() {
 
   cout << "Making board " << _numRows << "x" << _numCols << endl;
-  *brd = new BoardPtr[_numCols];
+  brd = new BoardPtr[_numCols];
   {
     for( int i = 0; i < _numCols; ++i ) {
       // Second dimension
