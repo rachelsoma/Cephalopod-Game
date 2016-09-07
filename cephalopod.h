@@ -16,10 +16,10 @@ class Game {
 public:
   void play();
   void boardSize(int,int,int);
-  void makeBoard(int*,int,int);
+  void makeBoard(int,int,int*);
   void humanMove();
   void placeDie(int,int,int);
-  void printBoard(int,int,int);
+  void printBoard(int,int,int*);
 
 private:
   int bsize;
@@ -28,6 +28,20 @@ private:
   //int board[][];
   typedef int* BoardPtr;
 
+};
+
+class Board {
+};
+
+class Player{
+};
+//AiPlayer inherets from Player
+class AiPlayer: public Player{
+  public:
+};
+//Random player inherets from Player
+class RandomPlayer: public Player{
+  public:
 };
 
 void Game::boardSize(int,int,int) {
@@ -55,7 +69,7 @@ void Game::boardSize(int,int,int) {
 
 };
 
-void Game::makeBoard(int*,int,int) {
+void Game::makeBoard(int,int,int*) {
   int index;
   cout << "Making board " << numRows << "x" << numCols << endl;
 
@@ -70,7 +84,7 @@ void Game::makeBoard(int*,int,int) {
   }
 
 
-void Game::printBoard(int,int,int) {
+void Game::printBoard(int,int,int*) {
 
   int *a;
 
