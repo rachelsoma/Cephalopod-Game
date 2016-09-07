@@ -14,16 +14,18 @@ using namespace std;
 
 class Game {
 public:
+  int numRows;
+  int numCols;
+
   void play();
   void boardSize();
-  void makeBoard();
-
+  void makeBoard(int,int);
   void printBoard();
 
 private:
   int bsize;
-  int numRows;
-  int numCols;
+  //int numRows;
+  //int numCols;
   //int board[][];
   typedef int* BoardPtr;
 
@@ -58,7 +60,7 @@ void Game::boardSize() {
 
 };*/
 
-void Game::makeBoard() {
+void Game::makeBoard(int numRows, int numCols) {
 
   cout << "Making board " << numRows << "x" << numCols << endl;
 

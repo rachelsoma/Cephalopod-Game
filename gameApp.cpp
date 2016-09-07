@@ -13,8 +13,7 @@ int main() {
   //players[1] = new AiPlayer::Player();
 
   Game a;
-  int * b
-  ;
+  //int * b;
   //this is the pointer int, when functions expect an int I’ve passed
   //it’s value with “*b”, where they expect a pointer I’ve passed “b”.
 
@@ -40,7 +39,7 @@ int main() {
 
 
 //make board using size selected
-  a.makeBoard();
+  a.makeBoard(numRows,numCols);
   //a.printBoard();
 //human move
 // HumanPlayer.placeDie(numRows,numCols,*b);
