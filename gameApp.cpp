@@ -8,21 +8,22 @@
 using namespace std;
 
 int main() {
-//  Player* players[2];
-// players[0] = new HumanPlayer::Player();
-  //players[1] = new AiPlayer::Player();
+  /*Player* players[2];
+  players1 = new HumanPlayer::Player();
+  players2 = new AiPlayer::Player();*/
 
-  Game a;
-  //int * b;
-  //this is the pointer int, when functions expect an int I’ve passed
-  //it’s value with “*b”, where they expect a pointer I’ve passed “b”.
+  HumanPlayer me;
+  AiPlayer you;
 
-  a.boardSize();
-//make board using size selected
-  a.makeBoard();
-  a.printBoard();
+  Board a;
+
+  a.boardSize(); //User selects board size
+
+  a.makeBoard(); //make board using size selected
+
+  a.printBoard(); //display current board with moves
 //human move
-// HumanPlayer.placeDie(numRows,numCols,*b);
+  me.placeDie();
   //a.printBoard(numRows,numCols,b);
 
   return 0;

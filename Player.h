@@ -2,15 +2,12 @@
 #define PLAYER_H
 
 
-class Player {
-  public:
+class Player: public Board {
+
 };
 //Human Player inherets from player
 class HumanPlayer: public Player{
   public:
-
-int numRows;
-int numCols;
   void humanMove();
   void placeDie();
 };
@@ -26,25 +23,27 @@ public:
 
 //This isn't going to work until I figure out pointers
 void HumanPlayer::placeDie() {
-  int *a;
-  int row;
-  int col;
+int col;
+int row;
+
   cout << "Where would you like to place your die?";
+   do {
+    cout << "Choose a col: ";
+    cin >> col;
+  } while (col < 1 || col > _numCols +1);
+  col = col - 1;
+
   do {
     cout << "Choose a row: ";
     cin >> row;
-  } while (row < 1 || row > numRows);
+  } while (row < 1 || row > _numRows);
   row = row - 1;
 
-  do {
-    cout << "Choose a col: ";
-    cin >> col;
-  } while (col < 1 || col > numCols +1);
-  col = col - 1;
+
 
 // check seat
-  if (*a != 0) { //checks if seat is taken or not **make own function**
-    *a = 1;
+  if (brd[col][row] != 0) { //checks if seat is taken or not **make own function**
+    brd[col][row] = 1; //places a 1 on the board
   } else {
     cout << "That move is invalid" << endl;
   }
