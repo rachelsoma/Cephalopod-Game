@@ -19,6 +19,7 @@ public:
   void makeBoard();
   void printBoard();
   void initBoard();
+  void placeDie();
 
 protected:
   /* using _ prefix to easily ideantify private */
@@ -52,7 +53,6 @@ void Board::boardSize() {
 };
 
 void Board::makeBoard() {
-
   cout << "Making board " << _numRows << "x" << _numCols << endl;
   brd = new BoardPtr[_numCols];
   {
@@ -103,6 +103,31 @@ void Board::printBoard() {
     }
   }
   cout << endl;
+};
+
+void Board::placeDie() {
+int col;
+int row;
+
+  cout << "Where would you like to place your die?";
+   do {
+    cout << "Choose a col: ";
+    cin >> col;
+  } while (col < 1 || col > _numCols); //while loop to validate input
+  col = col - 1;
+
+  do {
+    cout << "Choose a row: ";
+    cin >> row;
+  } while (row < 1 || row > _numRows); //while loop to validate input
+  row = row - 1;
+
+// check seat
+  if (brd[row][col] != 0) { //checks if seat is taken or not **make own function if time**
+    brd[row][col] = 1; //places a 1 on the board
+  } else {
+    cout << "That move is invalid" << endl;
+  }
 };
 
 #endif /* CEPHALOPOD_H_ */

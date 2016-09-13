@@ -8,13 +8,6 @@
 using namespace std;
 
 int main() {
-  /*Player* players[2];
-  players1 = new HumanPlayer::Player();
-  players2 = new AiPlayer::Player();*/
-
-  HumanPlayer me;
-  AiPlayer you;
-
   Board a;
 
   a.boardSize(); //User selects board size
@@ -23,8 +16,9 @@ int main() {
 
   a.printBoard(); //display current board with moves
 //human move
-  me.placeDie();
-  //a.printBoard(numRows,numCols,b);
+  a.placeDie(); //a human move
+
+  a.printBoard();
 
   return 0;
 };
