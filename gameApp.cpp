@@ -18,14 +18,18 @@ int main() {
   a.printBoard(); //display current board with moves
   //human move
 
-  //**TO DO** add a while loop that checks if any array values are 0, if not, game ends
+  //**TO DO** a while loop that checks if playOn status is TRUE if not, game ends
 do {
+
   a.placeDie(); //a human move
 
   a.printBoard();
 
-} while (playOn = true);
 
+ ; // tests if board is full
+} while (!a.isFull());
+
+cout << "Game over" <<endl;
 
   return 0;
 };

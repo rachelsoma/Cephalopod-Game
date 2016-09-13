@@ -21,19 +21,19 @@ public:
   void printBoard();
   void initBoard();
   void placeDie();
+  bool isFull();
 
 protected:
   /* using _ prefix to easily ideantify private */
   int _numRows;
   int _numCols;
 
-  //int board[][];
   typedef int *BoardPtr;
   BoardPtr *brd;
 };
 
-Board::Board(){
-int bsize;
+Board::Board() {
+  int bsize;
 //add verification while loop later
   cout << "Select board size: \n 1. 3x3 \n 2. 3x5 \n 3. 5x5 \n";
   cin >> bsize;
@@ -59,15 +59,13 @@ int bsize;
       brd[i] = new int[_numRows];
     }
   }
-   for (int row = 0; row < _numRows; row++) {
+  for (int row = 0; row < _numRows; row++) {
     for (int col = 0; col < _numCols; col++)
     { brd[row][col]=0; }
   }
 };
 
 void Board::printBoard() {
-
-
   for (int col = 0; col < _numCols; col++) {
     cout << setw(5) << col + 1;
   }
@@ -101,6 +99,16 @@ void Board::printBoard() {
   cout << endl;
 };
 
+bool Board::isFull() {
+  for (int i=0; i < _numRows; i++) {
+    for (int j=0; j < _numCols; j++)
+      if (brd[i][j] == 0) {
+        return false ;
+      }
+  }
+  return true;
+};
+
 void Board::placeDie() {
   int col;
   int row;
@@ -118,17 +126,14 @@ void Board::placeDie() {
   } while (row < 1 || row > _numRows); //while loop to validate input
   row = row - 1;
 
-
-
-// check seat
-
+// check move
   if (brd[row][col] == 0) { //checks if seat is taken or not **make own function if time**
     brd[row][col] = 1; //places a 1 on the board
   } else {
     cout << "That move is invalid" << endl;
   }
-
-cout<< row << "  " << col << " " << brd[0][0] << endl;
 };
+
+
 
 #endif /* CEPHALOPOD_H_ */
