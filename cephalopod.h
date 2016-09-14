@@ -16,10 +16,9 @@ class Board {
 public:
   Board();
   void printBoard();
-  void placeDie();
   bool isFull();
+  void humanMove();
   void randomPlayer();
-  void UDLR();
 
 protected:
   /* using _ prefix to easily ideantify private */
@@ -107,10 +106,7 @@ bool Board::isFull() {
   return true;
 };
 void Board::humanMove(){
-
-};
-void Board::placeDie() {
-  int col;
+int col;
   int row;
 
   cout << "Where would you like to place your die?" << endl;
@@ -126,8 +122,7 @@ void Board::placeDie() {
   } while (row < 1 || row > _numRows); //while loop to validate input
   row = row - 1;
 
-// check move
-  while (brd[row][col] != 0) { //while loop to validate input
+    while (brd[row][col] != 0) { //while loop to validate input
     cout << "That move is invalid" << endl;
     do {
       cout << "Choose a col: ";
@@ -141,7 +136,7 @@ void Board::placeDie() {
     } while (row < 1 || row > _numRows);
     row = row - 1;
   }
-  brd[row][col] = 1; //places a 1 on the board};
+ brd[row][col] = 1; //places a 1 on the board};
 };
 
 void Board::randomPlayer() {
@@ -155,10 +150,6 @@ void Board::randomPlayer() {
     col = rand() % _numCols;
   } while (brd[row][col] != 0);  //checks if tile is taken or not **make own function if time**
   brd[row][col] = -1; //places a 1 on the board
-};
-
-void Board::UDLR(){
-  int udlr[4] = brd[row]-1[col], brd[row]+1[col], brd[row][col]-1, brd[row][col]+1;
 };
 
 #endif /* CEPHALOPOD_H_ */

@@ -17,7 +17,7 @@ int main() {
   //**TO DO** a while loop that checks if playOn status is TRUE if not, game ends
 do {
 
-  a.placeDie(); //a human move
+  a.humanMove(); //a human move
   a.isFull();
   //a.printBoard();
 
