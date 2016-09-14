@@ -15,10 +15,18 @@ using namespace std;
 class Board {
 public:
   Board();
+  void play();
+  void boardSize();
+  void makeBoard();
   void printBoard();
   bool isFull();
   void humanMove();
   void randomPlayer();
+
+  void initBoard();
+  void placeDie();
+//  bool isFull();
+
 
 protected:
   /* using _ prefix to easily ideantify private */
@@ -105,8 +113,14 @@ bool Board::isFull() {
   }
   return true;
 };
+//<<<<<<< HEAD
 void Board::humanMove(){
 int col;
+//=======
+};
+void Board::placeDie() {
+  int col;
+
   int row;
 
   cout << "Where would you like to place your die?" << endl;
@@ -122,34 +136,31 @@ int col;
   } while (row < 1 || row > _numRows); //while loop to validate input
   row = row - 1;
 
+//<<<<<<< HEAD
     while (brd[row][col] != 0) { //while loop to validate input
+//=======
+// check move
+  if (brd[row][col] == 0) { //checks if seat is taken or not **make own function if time**
+    brd[row][col] = 1; //places a 1 on the board
+  } else {
+//>>>>>>> parent of 743a73b... weds
     cout << "That move is invalid" << endl;
-    do {
-      cout << "Choose a col: ";
-      cin >> col;
-    } while (col < 1 || col > _numCols); //while loop to validate input
-    col = col - 1;
-
-    do {
-      cout << "Choose a row: ";
-      cin >> row;
-    } while (row < 1 || row > _numRows);
-    row = row - 1;
   }
+//<<<<<<< HEAD
  brd[row][col] = 1; //places a 1 on the board};
+//=======
+//>>>>>>> parent of 743a73b... weds
 };
 
-void Board::randomPlayer() {
-  int col;
-  int row;
-  /* initialize random seed: */
-  srand (time(NULL));
 
+//<<<<<<< HEAD
   do {
     row = rand() % _numRows;
     col = rand() % _numCols;
   } while (brd[row][col] != 0);  //checks if tile is taken or not **make own function if time**
   brd[row][col] = -1; //places a 1 on the board
 };
+=======
+//>>>>>>> parent of 743a73b... weds
 
 #endif /* CEPHALOPOD_H_ */
