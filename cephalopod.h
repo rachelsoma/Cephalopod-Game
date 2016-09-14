@@ -178,23 +178,32 @@ void Board::randomPlayer() {
  */
 
 void Board::UDLR() {
-  int u,d,l,r;
+ // int u,d,l,r;
+
+ /* want to create pointers to specific parts of the array
+ so I can change the values without rewriting code*/
+  int *u;
+  *u = abs(&brd[row-1][col]); // I want u to pint to the value of brd[row-1][col]
+  int *d ;
+  *d = abs(&brd[row+1][col]); // same
+  int *l;
+  *l = abs(&brd[row][col-1]); //same
+  int *r ;
+  *r = abs(&brd[row][col+1]); //same
 
   if(row-1<0) {
     u = 0;
-  } else {u = abs(brd[row-1][col]);}
+  }
 
-  if (row+1>_numRows) {
-    d = 0;
-  } else {d = abs(brd[row+1][col]);}
+  if (row+1>=_numRows) {
+    d = 0;}
 
   if(col-1<0) {
-    l = 0;
-  } else {l = abs(brd[row][col-1]);}
+    l = 0;}
 
-  if (col>_numCols) {
+  if (col>=_numCols) {
     r = 0;
-  } else { r = abs(brd[row][col+1]);}
+  }
 
   int udlr[] = {u,d,l,r};
   int sum = 0;
@@ -205,6 +214,10 @@ void Board::UDLR() {
     brd[row][col] = 1;//places a 1 on the board};
   } else {
     brd[row][col] = sum;
+    *u=0; // want to change the value u points to to 0
+    *d=0; // same
+    *l=0; //same
+    *r=0; //same
   } //places sum of surrounding pips on the board};
 };
 
