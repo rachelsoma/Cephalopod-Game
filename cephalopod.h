@@ -15,18 +15,12 @@ using namespace std;
 class Board {
 public:
   Board();
-  void play();
-  void boardSize();
-  void makeBoard();
   void printBoard();
-  bool isFull();
-  void humanMove();
-  void randomPlayer();
-
-  void initBoard();
   void placeDie();
-//  bool isFull();
-
+  bool isFull();
+  void randomPlayer();
+  void UDLR();
+  void winner();
 
 protected:
   /* using _ prefix to easily ideantify private */
@@ -105,22 +99,18 @@ void Board::printBoard() {
 };
 
 bool Board::isFull() {
+cout << "isFull running" << endl; //testing where method called
   for (int i=0; i < _numRows; i++) {
     for (int j=0; j < _numCols; j++)
       if (brd[i][j] == 0) {
-        return false ;
+        return false;
+        break;
       }
   }
-  return true;
 };
-//<<<<<<< HEAD
-void Board::humanMove(){
-int col;
-//=======
-};
+
 void Board::placeDie() {
   int col;
-
   int row;
 
   cout << "Where would you like to place your die?" << endl;
@@ -136,31 +126,55 @@ void Board::placeDie() {
   } while (row < 1 || row > _numRows); //while loop to validate input
   row = row - 1;
 
-//<<<<<<< HEAD
-    while (brd[row][col] != 0) { //while loop to validate input
-//=======
 // check move
-  if (brd[row][col] == 0) { //checks if seat is taken or not **make own function if time**
-    brd[row][col] = 1; //places a 1 on the board
-  } else {
-//>>>>>>> parent of 743a73b... weds
+  while (brd[row][col] != 0) { //while loop to validate input
     cout << "That move is invalid" << endl;
+    do {
+      cout << "Choose a col: ";
+      cin >> col;
+    } while (col < 1 || col > _numCols); //while loop to validate input
+    col = col - 1;
+
+    do {
+      cout << "Choose a row: ";
+      cin >> row;
+    } while (row < 1 || row > _numRows);
+    row = row - 1;
   }
-//<<<<<<< HEAD
- brd[row][col] = 1; //places a 1 on the board};
-//=======
-//>>>>>>> parent of 743a73b... weds
+  brd[row][col] = 1; //places a 1 on the board};
 };
 
+void Board::randomPlayer() {
+  int col;
+  int row;
+  /* initialize random seed: */
+  srand (time(NULL));
 
-//<<<<<<< HEAD
   do {
     row = rand() % _numRows;
     col = rand() % _numCols;
   } while (brd[row][col] != 0);  //checks if tile is taken or not **make own function if time**
   brd[row][col] = -1; //places a 1 on the board
 };
-=======
-//>>>>>>> parent of 743a73b... weds
 
+void Board::UDLR() {
+//  int udlr[4] = brd[row]-1[col], brd[row]+1[col], brd[row][col]-1, brd[row][col]+1;
+};
+
+void Board::winner() {
+  int player1=0;
+  int player2=0;
+  for (int i=0; i < _numRows; i++) {
+    for (int j=0; j < _numCols; j++)
+      if (brd[i][j] < 0) {
+        player1++ ;
+      } else {
+      } player2++;
+  }
+  if (player1 > player2) {
+    cout << "Player 1 wins" <<endl;
+  } else {
+    cout << "Player 2 wins" << endl;
+  }
+};
 #endif /* CEPHALOPOD_H_ */
