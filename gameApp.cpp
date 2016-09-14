@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <cmath>        /* maths */
 
 #include "cephalopod.h"
 //#include "Player.h"

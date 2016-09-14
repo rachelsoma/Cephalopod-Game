@@ -10,8 +10,6 @@
 
 using namespace std;
 
-//const int maxSize = 5; //not needed due to dynamic array
-
 class Board {
 public:
   Board();
@@ -26,6 +24,8 @@ protected:
   /* using _ prefix to easily ideantify private */
   int _numRows;
   int _numCols;
+  int col;
+  int row;
 
   typedef int *BoardPtr;
   BoardPtr *brd;
@@ -98,20 +98,32 @@ void Board::printBoard() {
   cout << endl;
 };
 
+
+/** \brief if there are ANY zeroes in the array function returns FALSE
+ *
+ * \param status 1 equals true, 0 equals false
+ * \return boolean value true or false
+ *
+ */
+
 bool Board::isFull() {
-cout << "isFull running" << endl; //testing where method called
+  int status = 1;
   for (int i=0; i < _numRows; i++) {
     for (int j=0; j < _numCols; j++)
       if (brd[i][j] == 0) {
-        return false;
+        status = 0;
         break;
       }
+  }
+  if (status == 0) {
+    return false;
+  } else {
+    return true;
   }
 };
 
 void Board::placeDie() {
-  int col;
-  int row;
+
 
   cout << "Where would you like to place your die?" << endl;
   do {
@@ -141,7 +153,7 @@ void Board::placeDie() {
     } while (row < 1 || row > _numRows);
     row = row - 1;
   }
-  brd[row][col] = 1; //places a 1 on the board};
+ UDLR();
 };
 
 void Board::randomPlayer() {
@@ -157,8 +169,43 @@ void Board::randomPlayer() {
   brd[row][col] = -1; //places a 1 on the board
 };
 
+/** \brief Finds value of pips above, below, to the left and to the right of selected placement
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+
 void Board::UDLR() {
-//  int udlr[4] = brd[row]-1[col], brd[row]+1[col], brd[row][col]-1, brd[row][col]+1;
+  int u,d,l,r;
+
+  if(row-1<0) {
+    u = 0;
+  } else {u = abs(brd[row-1][col]);}
+
+  if (row+1>_numRows) {
+    d = 0;
+  } else {d = abs(brd[row+1][col]);}
+
+  if(col-1<0) {
+    l = 0;
+  } else {l = abs(brd[row][col-1]);}
+
+  if (col>_numCols) {
+    r = 0;
+  } else { r = abs(brd[row][col+1]);}
+
+  int udlr[] = {u,d,l,r};
+  int sum = 0;
+  for (int i = 0; i < 4; i++)
+  { sum = sum + udlr[i]; }
+
+  if (sum == 0) {
+    brd[row][col] = 1;//places a 1 on the board};
+  } else {
+    brd[row][col] = sum;
+  } //places sum of surrounding pips on the board};
 };
 
 void Board::winner() {
