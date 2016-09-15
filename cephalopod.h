@@ -17,15 +17,15 @@ public:
   void placeDie();
   bool isFull();
   void randomPlayer();
-  void UDLR();
+  void UDLR(int,int);
   void winner();
 
 protected:
   /* using _ prefix to easily ideantify private */
   int _numRows;
   int _numCols;
-  int col;
-  int row;
+  //int col;
+  //int row;
 
   typedef int *BoardPtr;
   BoardPtr *brd;
@@ -123,7 +123,7 @@ bool Board::isFull() {
 };
 
 void Board::placeDie() {
-
+int row,col;
 
   cout << "Where would you like to place your die?" << endl;
   do {
@@ -153,8 +153,8 @@ void Board::placeDie() {
     } while (row < 1 || row > _numRows);
     row = row - 1;
   }
- //UDLR();
-  brd[row][col] = 1;//places a 1 on the board};
+ UDLR(row,col);
+ // brd[row][col] = 1;//places a 1 on the board};
 };
 
 void Board::randomPlayer() {
@@ -178,48 +178,47 @@ void Board::randomPlayer() {
  *
  */
 
-void Board::UDLR() {
- // int u,d,l,r;
+void Board::UDLR(int inRow,int inCol) {
+  int u,d,l,r;
+  int udlr[4];
 
- /* want to create pointers to specific parts of the array
- so I can change the values without rewriting code*/
-  int u;
-  u = abs(brd[row-1][col]); // I want u to pint to the value of brd[row-1][col]
-  int d ;
-  d = abs(brd[row+1][col]); // same
-  int l;
-  l = abs(brd[row][col-1]); //same
-  int r ;
-  r = abs(brd[row][col+1]); //same
+  // set U
+  if(inRow-1<0) { //checking within array bounds
+    udlr[0] = 0;
+  } else { udlr[0] = abs(brd[inRow-1][inCol]);}
 
-  if(row-1<0) {
-    u = 0;
-  }
+  //set D
+  if (inRow+1>=_numRows) {
+    udlr[1] = 0;
+  } else {udlr[1] = abs(brd[inRow+1][inCol]);}
 
-  if (row+1>=_numRows) {
-    d = 0;}
+  //set L
+  if(inCol-1<0) {
+    udlr[2] = 0;
+    } else {udlr[2] = abs(brd[inRow][inCol-1]);}
+  // set R
+  if (inCol+1>=_numCols) {
+    udlr[3] = 0;
+  } else {udlr[3] = abs(brd[inRow][inCol+1]);}
 
-  if(col-1<0) {
-    l = 0;}
-
-  if (col>=_numCols) {
-    r = 0;
-  }
-
-  int udlr[] = {u,d,l,r};
   int sum = 0;
   for (int i = 0; i < 4; i++)
-  { sum = sum + udlr[i]; }
-
+  { sum = sum + udlr[i];
+  cout << udlr[i] << " ";
+  }
+cout << "  sum " << sum << endl;
   if (sum == 0) {
-    brd[row][col] = 1;//places a 1 on the board};
+    brd[inRow][inCol] = 1;//places a 1 on the board};
   } else {
-    brd[row][col] = sum;
-    u=0; // want to change the value u points to to 0
-    d=0; // same
-    l=0; //same
-    r=0; //same
-  } //places sum of surrounding pips on the board};
+    brd[inRow][inCol] = sum; //places sum of surrounding pips +1 on the board
+
+/**<
+    brd[inRow-1][inCol] = 0; //captures U
+    brd[inRow+1][inCol] = 0; //captured D
+    brd[inRow][inCol-1] = 0; //captures L
+    brd[inRow][inCol+1] = 0; //captures R
+   */
+  }
 };
 
 void Board::winner() {
