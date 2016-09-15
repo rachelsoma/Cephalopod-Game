@@ -18,6 +18,7 @@ public:
   bool isFull();
   void randomPlayer();
   void UDLR(int,int);
+  void capture(int,int);
   void winner();
 
 protected:
@@ -123,7 +124,7 @@ bool Board::isFull() {
 };
 
 void Board::placeDie() {
-int row,col;
+  int row,col;
 
   cout << "Where would you like to place your die?" << endl;
   do {
@@ -153,8 +154,8 @@ int row,col;
     } while (row < 1 || row > _numRows);
     row = row - 1;
   }
- UDLR(row,col);
- // brd[row][col] = 1;//places a 1 on the board};
+  UDLR(row,col);
+// brd[row][col] = 1;//places a 1 on the board};
 };
 
 void Board::randomPlayer() {
@@ -167,7 +168,8 @@ void Board::randomPlayer() {
     row = rand() % _numRows;
     col = rand() % _numCols;
   } while (brd[row][col] != 0);  //checks if tile is taken or not **make own function if time**
-  brd[row][col] = -1; //places a 1 on the board
+
+  //brd[row][col] = -1; //places a 1 on the board
 };
 
 /** \brief Finds value of pips above, below, to the left and to the right of selected placement
@@ -195,30 +197,49 @@ void Board::UDLR(int inRow,int inCol) {
   //set L
   if(inCol-1<0) {
     udlr[2] = 0;
-    } else {udlr[2] = abs(brd[inRow][inCol-1]);}
+  } else {udlr[2] = abs(brd[inRow][inCol-1]);}
   // set R
   if (inCol+1>=_numCols) {
     udlr[3] = 0;
   } else {udlr[3] = abs(brd[inRow][inCol+1]);}
 
   int sum = 0;
-  for (int i = 0; i < 4; i++)
-  { sum = sum + udlr[i];
-  cout << udlr[i] << " ";
+  for (int i = 0; i < 4; i++) {
+    sum = sum + udlr[i];
+    cout << udlr[i] << " ";
   }
-cout << "  sum " << sum << endl;
+  cout << "  sum " << sum <<" inCol:" << inCol << " _numCols" << _numCols<< endl;
   if (sum == 0) {
     brd[inRow][inCol] = 1;//places a 1 on the board};
-  } else {
-    brd[inRow][inCol] = sum; //places sum of surrounding pips +1 on the board
+  } else
+    if (sum>6) {
+      brd[inRow][inCol] = 6;
+      capture(inRow,inCol);
+    } else {
+      brd[inRow][inCol] = sum; //places sum of surrounding pips +1 on the board
+      capture(inRow,inCol);
 
-/**<
+    }
+
+
+};
+
+void Board::capture(int inRow, int inCol) {
+
+  if(inRow-1>=0) { //check if in bounds
     brd[inRow-1][inCol] = 0; //captures U
-    brd[inRow+1][inCol] = 0; //captured D
-    brd[inRow][inCol-1] = 0; //captures L
-    brd[inRow][inCol+1] = 0; //captures R
-   */
   }
+  if (inRow+1<_numRows) {//check if in bounds
+    brd[inRow+1][inCol] = 0; //captured D
+  }
+  if(inCol-1>0) {//check if in bounds
+    brd[inRow][inCol-1] = 0; //captures L
+  }
+  if (inCol+1<_numCols) {//check if in bounds
+    brd[inRow][inCol+1] = 0; //captures R
+  }
+
+//}
 };
 
 void Board::winner() {
