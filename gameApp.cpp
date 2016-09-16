@@ -24,14 +24,14 @@ int main() {
   while (!a.isFull())  {//loop continues if board has any spaces with 0 in them
 // tests if board is full.
     if (!a.isFull()) {
-      a.placeDie(); //a human move
-      a.printBoard();
+      a.humanMove();
+      //a.chooseMove(); //a human move
+      //a.printBoard();
     }
 
     if (!a.isFull()) {
       cout << "Computer's move" <<endl;
-      a.randomPlayer(); //random computer move
-      a.printBoard();
+      a.computerMove();
     }
 
   }
